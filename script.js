@@ -1,5 +1,6 @@
 const renderDataElement = document.querySelector('#renderData')
 const searchProjectElement = document.querySelector("#searchProject")
+const filterelement = document.querySelector('#filter')
 
 let allproject=[]
 
@@ -28,37 +29,39 @@ async function fetchAPI(){
     await fetch('https://674e84f1635bad45618eebc1.mockapi.io/api/v1/projects')
     .then(resp => resp.json())
     .then(data => {
+        console.log(data)
         allproject = data;
         renderData(data);
     })
     .catch(err => console.log(err))
 }
 
-// let inputvalue =''
-// function searchProject(){
-
-//     let renderPrd = fetchAPI()
-//     // console.log(renderPrd)
-
-//     const searchByName = renderPrd.filter((nam)=> nam.ProjectName.toLowerCase().includes(inputvalue.toLowerCase()))  
-//     console.log(searchByName)
-//     renderData(searchByName);
 
 
-// }
-
-    searchProjectElement.addEventListener('input' , () => {
+searchProjectElement.addEventListener('input' , () => {
         const inputvalue = searchProjectElement.value.toLowerCase().trim();
 
         const reRenderData = allproject.filter((proj) => proj.ProjectName.toLowerCase().includes(inputvalue));
         renderData(reRenderData)
-    })  
+})  
+   
+filterelement.addEventListener('change' , function(data){
+    // console.log(data.target.value)
+
+    const selectedValue = data.target.value;
+    console.log(selectedValue)
+
+    if(selectedValue === "ALL"){
+        renderData(allproject)
+    }else{
+        
+        const renderD = allproject.filter((proj) => proj.status.includes(selectedValue))
+        renderData(renderD)
+    }  
     
+})
     
   
-// function searchInput(){
-
-// }
 
 
 window.addEventListener('DOMContentLoaded' , () => {
