@@ -21,9 +21,20 @@ function renderData(dataFromApi){
                     <td>${proj.EndDate}</td>
                 </tr>
     `
-    ).join('');                          
+    ).join(''); 
+    
+    changeStatus()
 }
 
+console.dir(renderDataElement)
+
+function changeStatus(){
+    const renderDataElementChild = renderDataElement.firstElementChild.children[3];
+    if(renderDataElementChild === "Completed"){
+        renderDataElementChild.style.backgroundColor = 'red';
+    }
+    console.log(renderDataElementChild)
+}
 
 async function fetchAPI(){
     await fetch('https://674e84f1635bad45618eebc1.mockapi.io/api/v1/projects')
@@ -66,4 +77,8 @@ filterelement.addEventListener('change' , function(data){
 
 window.addEventListener('DOMContentLoaded' , () => {
     fetchAPI()
+
+    if(allproject.status === "Completed"){
+        allproject.status
+    }
 })

@@ -1,0 +1,88 @@
+/* BODY */
+body {
+    background-color: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 24px;
+}
+
+#header h1{
+    color: #e2e8f0;
+    margin-bottom: 18px;
+}
+
+input{
+    height: 36px;
+    padding: 4px 16px;
+    border: none;
+    border-radius: 50px;
+    /* margin-right: 18px; */
+    box-shadow: 0 0 4px 0px rgba(206, 206, 206, 0.604);
+}
+
+#filter{
+    height: 36px;
+    padding: 4px 16px;
+    border: none;
+    box-shadow: 0 0 4px 0px rgba(206, 206, 206, 0.604);
+    margin-left: 12px;
+}
+
+
+input:focus ,select:focus{
+    outline: none;
+}
+
+#projectData{
+    margin-top: 18px;
+}
+
+/* CONTAINER */
+#renderprojectDataData {
+    padding: 20px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #1e293b; /* key fix */
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    margin-bottom: 18px;
+}
+
+/* HEADER */
+thead tr {
+    background: linear-gradient(to right, #facc15, #eab308);
+}
+
+th {
+    padding: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b; /* dark text on yellow */
+    text-transform: uppercase;
+}
+
+/* TEXT */
+td {
+    padding: 14px 16px;
+    color: #e2e8f0; /* light text */
+}
+
+/* ROW SEPARATION (important for readability) */
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* HOVER */
+tbody tr:hover {
+    background-color: #334155;
+}
+
+/* REMOVE HARD GRID */
+th, td {
+    border: none;
+}
