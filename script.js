@@ -28,16 +28,38 @@ function renderData(dataFromApi){
 
 console.dir(renderDataElement)
 
-function changeStatus(){
-    const renderDataElementChild = renderDataElement.firstElementChild.children[3];
-    if(renderDataElementChild === "Completed"){
-        renderDataElementChild.style.backgroundColor = 'red';
-    }
-    console.log(renderDataElementChild)
+function changeStatus() {
+    const rows = document.querySelectorAll("#renderData tr");
+
+    rows.forEach(row => {
+        const tdElement = row.children[3];
+        const tdText = tdElement.textContent.trim().toLowerCase();
+
+
+        tdElement.innerHTML = "";
+
+        const span = document.createElement("span");
+        span.textContent = tdText;
+
+        if (tdText === "completed") {
+            span.classList.add("badge", "text-bg-success", "fs-6");
+        }
+        else {
+            span.classList.add("badge", "text-bg-danger", "fs-6");
+        }
+
+        tdElement.appendChild(span);
+    });
 }
 
-async function fetchAPI(){
-    await fetch('https://674e84f1635bad45618eebc1.mockapi.io/api/v1/projects')
+ function fetchAPI(){
+    const spinner = document.querySelector(".spinner");
+    const tableContainer = document.querySelector("#projectData");
+
+    spinner.style.display = "block";
+    tableContainer.style.display = "none";
+
+    fetch('https://674e84f1635bad45618eebc1.mockapi.io/api/v1/projects')
     .then(resp => resp.json())
     .then(data => {
         console.log(data)
@@ -45,6 +67,10 @@ async function fetchAPI(){
         renderData(data);
     })
     .catch(err => console.log(err))
+    .finally(() => {
+            spinner.style.display = "none";
+            tableContainer.style.display = "block";
+        });
 }
 
 
@@ -77,8 +103,4 @@ filterelement.addEventListener('change' , function(data){
 
 window.addEventListener('DOMContentLoaded' , () => {
     fetchAPI()
-
-    if(allproject.status === "Completed"){
-        allproject.status
-    }
 })
